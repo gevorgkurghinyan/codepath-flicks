@@ -63,9 +63,9 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
         tvTitle.setText(movie.getOriginalTitle());
         tvOverView.setText(movie.getOverview());
         rbMovie.setRating((float) (movie.getVoteAverage() / 2));
-        tvRating.setText(String.format("Average Rating: %s/%s", movie.getVoteAverage(), MAX_RATING));
+        tvRating.setText(String.format("Average rating: %s/%s", movie.getVoteAverage(), MAX_RATING));
         tvReleaseDate.setText(String.format("Release date: %s", movie.getReleaseDate()));
-        tvVotersCount.setText(String.format("Reviews Counted: %s", movie.getVoteCount()));
+        tvVotersCount.setText(String.format("Review count: %s", movie.getVoteCount()));
 
         httpClient.get(String.format(MOVIE_TRAILER_URL, movie.getId()), new JsonHttpResponseHandler() {
             @Override

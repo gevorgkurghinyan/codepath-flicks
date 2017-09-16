@@ -18,7 +18,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
+
+    private static final int ROUNDED_CORNER_RADIUS = 20;
+    private static final int ROUNDED_CORNER_MARGIN = 20;
 
     public MovieArrayAdapter(Context context, List<Movie> movies) {
         super(context, android.R.layout.simple_list_item_1, movies);
@@ -47,11 +52,17 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         int orientation = getContext().getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             Picasso.with(getContext()).load(movie.getPosterPath())
-                    //.placeholder(R.drawable)
+                    .fit()
+                    .centerCrop()
+                    .placeholder(R.drawable.image_placeholder)
+                    .transform(new RoundedCornersTransformation(ROUNDED_CORNER_RADIUS, ROUNDED_CORNER_MARGIN))
                     .into(viewModel.movieImageView);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Picasso.with(getContext()).load(movie.getBackdropPath())
-                    //.placeholder(R.drawable)
+                    .fit()
+                    .centerCrop()
+                    .placeholder(R.drawable.image_placeholder)
+                    .transform(new RoundedCornersTransformation(ROUNDED_CORNER_RADIUS, ROUNDED_CORNER_MARGIN))
                     .into(viewModel.movieImageView);
         }
 
